@@ -1,4 +1,4 @@
-package dto;
+package org.example.pdfgeneratoritext.dto;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pdfdto {
+public class PdfDto {
     private String name;
     private String contractNumber;
     private String empName;
@@ -20,3 +20,4 @@ public class Pdfdto {
     private String dateOfStart;
     private String dateOfEnd;
 }
+

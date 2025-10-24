@@ -1,7 +1,7 @@
-package pdfGeneration;
+package org.example.pdfgeneratoritext.pdfGenerator;
 
 import com.itextpdf.html2pdf.HtmlConverter;
-import dto.Pdfdto;
+import org.example.pdfgeneratoritext.dto.PdfDto;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HtmlToPdfGenerator {
-    public String processTemplate(Pdfdto dto) {
+    public String processTemplate(PdfDto dto) {
         String template = """
                 <!DOCTYPE html>
                 <html>
@@ -61,7 +61,7 @@ public class HtmlToPdfGenerator {
         return template;
     }
 
-    private static Map<String, Object> getMap(Pdfdto dto) {
+    private static Map<String, Object> getMap(PdfDto dto) {
         Map<String, Object> map = new HashMap<>();
         Field[] fields = dto.getClass().getDeclaredFields();
         Arrays.stream(fields).forEach(field -> {
@@ -75,7 +75,7 @@ public class HtmlToPdfGenerator {
         return map;
     }
 
-    public void generatePdf(Pdfdto data, String outputPath) throws IOException {
+    public void generatePdf(PdfDto data, String outputPath) throws IOException {
         String htmlContent = processTemplate(data);
 
         try (FileOutputStream fos = new FileOutputStream(outputPath)) {
@@ -84,7 +84,7 @@ public class HtmlToPdfGenerator {
     }
     public static void main(String[] args) {
         HtmlToPdfGenerator generator = new HtmlToPdfGenerator();
-        Pdfdto pdfdto = new Pdfdto();
+        PdfDto pdfdto = new PdfDto();
         pdfdto.setName("Иванов Иван Павлович");
         pdfdto.setAccountNumber("3456789012831");
         pdfdto.setDateOfStart("23.10.2025");
@@ -101,3 +101,4 @@ public class HtmlToPdfGenerator {
         }
     }
 }
+
